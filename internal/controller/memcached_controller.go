@@ -59,7 +59,7 @@ type MemcachedReconciler struct {
 // Reconcile is part of the main kubernetes reconciliation loop which aims to
 // move the current state of the cluster closer to the desired state.
 func (r *MemcachedReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
-	log = logf.FromContext(ctx)
+	log := logf.FromContext(ctx)
 
 	// Fetch the Memcached instance
 	// The purpose is to check if the Custom Resource of the kind Memcached
@@ -91,7 +91,7 @@ func (r *MemcachedReconciler) Reconcile(ctx context.Context, req ctrl.Request) (
 			},
 		)
 
-		if err = r.Status().update(ctx, memcached); err != nil {
+		if err = r.Status().Update(ctx, memcached); err != nil {
 			log.Error(err, "Failed to update Memcached status")
 			return ctrl.Result{}, err
 		}
@@ -130,7 +130,7 @@ func (r *MemcachedReconciler) Reconcile(ctx context.Context, req ctrl.Request) (
 				},
 			)
 
-			if err := r.Status().update(ctx, memcached); err != nil {
+			if err := r.Status().Update(ctx, memcached); err != nil {
 				log.Error(err, "Failed to update memcached status")
 				return ctrl.Result{}, err
 			}
